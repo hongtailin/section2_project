@@ -85,14 +85,82 @@ define(["jquery" , "jquery-cookie"] , function(){
       url:"data/data.json",
       success:function(obj){
         var arr = obj.data.home_hot;
-        console.log(arr);
+        for(let i = 0; i < arr.length ; i++){
+          var newArr = arr[i].spu.sku_info;
+          str += `<li>
+          <div class = "products_hot_content_img""><img src="${newArr[0].ali_image}" alt=""></div>
+          <h3>${newArr[0].title}</h3>
+          <h5>${newArr[0].sub_title}</h5>
+          <aside>
+            `;
+          //判断有几个颜色
+          var newArr_color = [];
+          for(let i = 0; i < newArr.length ; i++){
+            let arr_temp = newArr[i].spec_json;
+            for(let i = 0; i < arr_temp.length ; i++){
+              if(arr_temp[i].image){
+                if($.inArray(arr_temp[i].image,newArr_color) == -1){
+                  newArr_color.push(arr_temp[i].image);
+                }
+              }
+            }
+          }
+          for(let i = 0 ; i < newArr_color.length; i++){
+            str += `<div class="products_hot_content_img_color"><img src="${newArr_color[i]}" alt=""></div>
+            `;
+          }
+          str += `</aside>
+          <article>￥${newArr[0].price}</article>
+        </li>`;
+        }
+        $("#products_hot_content ul").html(str);
       },
       error : function(error){
         console.log(error);
       }
     })
-  }
+    //左右滑动
+    var status = 0;
+    $("#products_hot_title_btn li").eq(0).click(function(){
+      if(status == 1){
+        $("#products_hot_content ul").animate({left : 0} ,500);
+        status = 0;
+      }
+    })
+    $("#products_hot_title_btn li").eq(1).click(function(){
+      if(status == 0){
+        $("#products_hot_content ul").animate({left : -1220} ,500);
+        status = 1;
+      }
+    })
 
+    //鼠标滑入颜色框，转数据
+    $("#products_hot_content").on("mouseenter" , ".products_hot_content_img_color" , function(){
+      $(this).addClass("active");
+      $(this).siblings().removeClass("active");
+      var index_li = $(this).closest("li").index();
+      var nowColor = $(this).find("img").attr("src");
+      var _this = $(this);
+      $.ajax({
+        url : "data/data.json",
+        success: function(obj){
+          var arr = obj.data.home_hot[index_li].spu.sku_info;
+          for(var i = 0; i < arr.length; i++){
+            var newArr = arr[i].spec_json;
+            for(var j = 0 ;j < newArr.length ; j++){
+              if(newArr[j].image == nowColor){
+                _this.closest("li").find(".products_hot_content_img img").attr("src" , arr[i].ali_image);
+                break;
+              }
+            }
+          }
+        },
+        error : function(error){
+          console.log(error);
+        }
+      })
+    })
+  }
 
 
 
