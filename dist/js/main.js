@@ -21,5 +21,6 @@ require(["index","banner"] , function(index,banner){
   index.show_nav_Msg();
   index.show_activities();
   index.show_products_hot();
+  index.products_list();
   banner.bannerMain();
 })
