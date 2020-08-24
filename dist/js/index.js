@@ -55,7 +55,7 @@ define(["jquery" , "jquery-cookie"] , function(){
   function show_activities(){
     var str = "";
     $.ajax({
-      url : "data/data.json",
+      url : "../data/data.json",
       success:function(obj){
         var arr = obj.data.home_activities;
         for(var i = 0; i <arr.length ; i++){
@@ -77,7 +77,7 @@ define(["jquery" , "jquery-cookie"] , function(){
   function show_products_hot(){
     var str = "";
     $.ajax({
-      url:"data/data.json",
+      url:"../data/data.json",
       success:function(obj){
         var arr = obj.data.home_hot;
         for(let i = 0; i < arr.length ; i++){
@@ -164,7 +164,7 @@ define(["jquery" , "jquery-cookie"] , function(){
   function products_list(){
     var str = "";
     $.ajax({
-      url : "data/data.json",
+      url : "../data/data.json",
       success: function(obj){
         arr = obj.data.home_floors;
         for(let i = 0; i < arr.length ; i++){
@@ -223,7 +223,7 @@ define(["jquery" , "jquery-cookie"] , function(){
       var nowColor = $(this).find("img").attr("src");
       var _this = $(this);
       $.ajax({
-        url : "data/data.json",
+        url : "../data/data.json",
         success: function(obj){
           var arr = obj.data.home_floors[index_div_box].tabs[0].tab_items[index_li].spu.sku_info;
           for(var i = 0; i < arr.length; i++){
@@ -273,7 +273,7 @@ define(["jquery" , "jquery-cookie"] , function(){
       $("#nav-msg-box").show();
       var str = "";
       $.ajax({
-        url : "data/nav.json",
+        url : "../data/nav.json",
         success : function(arr){
           var newArr = arr[turn].list;
           switch(turn){

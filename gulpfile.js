@@ -58,6 +58,16 @@ gulp.task("index-scss",function(){
   .pipe(connect.reload());
 })
 
+gulp.task("index-scss_detail",function(){
+  return gulp.src("stylesheet/detail.scss")
+  .pipe(scss())
+  .pipe(gulp.dest("dist/css"))
+  .pipe(minify())
+  .pipe(rename("detail.min.css"))
+  .pipe(gulp.dest("dist/css"))
+  .pipe(connect.reload());
+})
+
 //监听
 gulp.task("watch" , function(){
   gulp.watch(["*.html" , "!index.html"], ["copy-html"]);
@@ -65,6 +75,7 @@ gulp.task("watch" , function(){
   gulp.watch(["*.json" , "!package.json"] , ["data"]);
   gulp.watch(["*.js" , "!gulpfile.js"] , ["script"]);
   gulp.watch("stylesheet/index.scss" , ["index-scss"]);
+  gulp.watch("stylesheet/detail.scss" , ["index-scss_detail"]);
 })
 
 //服务器

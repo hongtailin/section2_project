@@ -6,7 +6,7 @@ define(["jquery"] , function($){
     var timer = null;
 
     $.ajax({
-      url : "data/data.json",
+      url : "../data/data.json",
       success : function(obj){
         var arr = obj.data.home_carousel;
         var str = "";
