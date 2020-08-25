@@ -37,3 +37,8 @@
     transform: scaleY(0.5);
   }
 }
+@mixin omit{
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow: ellipsis;
+}

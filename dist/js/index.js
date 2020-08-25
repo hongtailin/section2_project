@@ -17,7 +17,7 @@ define(["jquery" , "jquery-cookie"] , function(){
   function switch_nav_Right(){
     $(window).scroll(function(){
       var top = $("#navbox").offset().top;
-      if(top > 45){
+      if(top > 45.1){
         $("#nav-right-hide").show();
         $("#search").hide();
         $("#shoppingCart_content").css("top" , top + 75);

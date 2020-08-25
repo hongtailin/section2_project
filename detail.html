@@ -31,9 +31,62 @@
   </header>
   <!-- 鼠标滑入购物车时显示的框 -->
   <div id="shoppingCart_content">
-    <h1 class="icon iconfont icon-che"></h1>
-    <h2>购物车为空</h2>
-    <span>你还没有选购任何商品，现在前往商城选购吧！</span>
+    <!-- <div class = "shoppingCart_content_empty_box">
+      <h1 class="icon iconfont icon-che"></h1>
+      <h2>购物车为空</h2>
+      <span>你还没有选购任何商品，现在前往商城选购吧！</span>
+    </div> -->
+    <div class="shoppingCart_content_item_box">
+      <div class="shoppingCart_content_item">
+        <div class="item_img"><img src="https://resource.smartisan.com/resource/84802a1c745056231c0a17adacef32e8.png?x-oss-process=image/resize,w_72" alt=""></div>
+        <div class="item_info">
+          <h3>Smartisan 真无线TWS蓝牙耳机</h3>
+          <h4>智能配对 开盖即连</h4>
+          <section>
+            <i>¥189.00</i>×<span>1</span>
+          </section>
+        </div>
+        <div class = "item_info_delete">X</div>
+      </div>
+      <div class="shoppingCart_content_item">
+        <div class="item_img"><img src="https://resource.smartisan.com/resource/84802a1c745056231c0a17adacef32e8.png?x-oss-process=image/resize,w_72" alt=""></div>
+        <div class="item_info">
+          <h3>Smartisan 真无线TWS蓝牙耳机</h3>
+          <h4>智能配对 开盖即连</h4>
+          <section>
+            <i>¥189.00</i>×<span>1</span>
+          </section>
+        </div>
+        <div class = "item_info_delte">X</div>
+      </div>
+      <div class="shoppingCart_content_item">
+        <div class="item_img"><img src="https://resource.smartisan.com/resource/84802a1c745056231c0a17adacef32e8.png?x-oss-process=image/resize,w_72" alt=""></div>
+        <div class="item_info">
+          <h3>Smartisan 真无线TWS蓝牙耳机</h3>
+          <h4>智能配对 开盖即连</h4>
+          <section>
+            <i>¥189.00</i>×<span>1</span>
+          </section>
+        </div>
+      </div>
+      <div class="shoppingCart_content_item">
+        <div class="item_img"><img src="https://resource.smartisan.com/resource/84802a1c745056231c0a17adacef32e8.png?x-oss-process=image/resize,w_72" alt=""></div>
+        <div class="item_info">
+          <h3>Smartisan 真无线TWS蓝牙耳机</h3>
+          <h4>智能配对 开盖即连</h4>
+          <section>
+            <i>¥189.00</i>×<span>1</span>
+          </section>
+        </div>
+      </div>
+    </div>
+    <div class="shoppingCart_content_bottom">
+      <section>
+        <h5>共<span>1</span>件商品</h5>
+        <p>合计：<span>￥189</span></p>
+      </section>
+      <article>去购物车</article>
+    </div>
   </div>
   <!-- 导航 -->
   <div id="navbox">
@@ -72,7 +125,7 @@
 
   <!-- 商品详情 -->
   <div id="goods_detail_box">
-    <div id="goods_detail">
+    <div class="goods_detail" id = "1">
       <!-- <div id="goods_detail_photoList">
         <div class = "active">
           <img src="https://resource.smartisan.com/resource/e991f946530a7cfab3d9670dd8b1371b.png?x-oss-process=image/resize,w_64/format,webp" alt="">
@@ -149,6 +202,67 @@
         </section>
       </li>
     </ul>
+  </div>
+
+  <!-- 固定栏 -->
+  <div id="goods_detail_sticky_box">
+    <div id="goods_detail_sticky">
+      <div id="goods_detail_sticky_left">
+        <h1>您以选择了</h1>
+        <aside>
+          <h2>Smartisan 真无线TWS蓝牙耳机 ×<span>1</span></h2>
+          <p>白色</p>
+        </aside>
+      </div>
+      <div id="goods_detail_sticky_right">
+        ￥<span>249.00</span>
+        <div>现在购买</div>
+        <div>加入购物车</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 底部 -->
+  <div id="footer_box">
+    <footer>
+      <ul>
+        <li>
+          <h3>订单服务</h3>
+          <a href="">购买指南</a>
+          <a href="">送货政策</a>
+        </li>
+        <li>
+          <h3>服务支持</h3>
+          <a href="">零售门店</a>
+          <a href="">自助服务</a>
+          <a href="">维修门店</a>
+        </li>
+        <li>
+          <h3>媒体中心</h3>
+          <a href="">新闻动态</a>
+          <a href="">官方视频</a>
+          <a href="">图片资源</a>
+        </li>
+        <li>
+          <h3>关注我们</h3>
+          <a href="">新浪微博</a>
+          <a href="">官方微信</a>
+          <a href="">荣誉奖项</a>
+        </li>
+      </ul>
+      <div id="footer_top_right">
+        <h1>400-603-5000</h1>
+        <h2>周一到周日 9：00 - 18：00</h2>
+        <h2>（仅收市话费）</h2>
+        <div>
+          <span>在线帮助</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <div id="add_shoppingCart_massage">
+    以添加至购物车
   </div>
 </body>
 <script>

@@ -1,4 +1,5 @@
 define(["jquery" , "jquery-cookie"] , function(){
+  show_shoppingcart_content();
   function showShoppingCart_detail(){
     var timer = null;
     $("#shoppingCart_content,#header-right #shoppingCart_header a , #shoppingCart_nav a")
@@ -10,6 +11,9 @@ define(["jquery" , "jquery-cookie"] , function(){
       timer = setTimeout(() => {
         $("#shoppingCart_content").hide();
       }, 300);
+    });
+    $(document).scroll(function(){
+      $("#shoppingCart_content").hide();
     })
   }
 
@@ -80,9 +84,9 @@ define(["jquery" , "jquery-cookie"] , function(){
           <p>* ${arr[0].service_description}</p>
         </div>
       </div>`;
-      $("#goods_detail").html(str);
+      $(".goods_detail").html(str);
       $("#goods_detail_photoList div:first").addClass("active");
-      $("#goods_detail_info section ol li").eq(num).addClass("active");
+      $("#goods_detail_info section ol li").eq(num).addClass("active");   
       },
       error : function(error){
         console.log(error);
@@ -91,6 +95,17 @@ define(["jquery" , "jquery-cookie"] , function(){
     goods_detail_image_switch();
     magnifying_image();
     products_num_count();
+    //固定栏操作-添加购物车
+    $("#goods_detail_sticky_right div").eq(1).click(function(){
+      let id = $(".goods_detail").attr("id");
+      let count = $("#goods_detail_info div ul i").html();
+      shoppingcart_add_goods({id,count});
+      show_shoppingcart_content();
+      $("#add_shoppingCart_massage").animate({opacity : 1}, 500);
+      setTimeout(function(){
+        $("#add_shoppingCart_massage").animate({opacity : 0}, 500);
+      },1000);
+    })
   }
 
   //产品信息详细图加载
@@ -115,12 +130,14 @@ define(["jquery" , "jquery-cookie"] , function(){
   var isYes = true;
   function products_num_count(){
   if(isYes){
-    $("#goods_detail").on("click","#goods_detail_info div:first ul li:first",function(){
+    $(".goods_detail").on("click","#goods_detail_info div:first ul li:first",function(){
       let num = $(this).closest("ul").find("i").html();
       if(num > 1){
         num--;
       }
       $(this).closest("ul").find("i").html(num);
+      $("#goods_detail_sticky_left aside h2 span").html(num);
+      $("#goods_detail_sticky_right span").html(`${num * 249}.00`);
       isYes = false;
     }).on("click","#goods_detail_info div:first ul li:last",function(){
       let num = $(this).closest("ul").find("i").html();
@@ -128,6 +145,8 @@ define(["jquery" , "jquery-cookie"] , function(){
         num++;
       }
       $(this).closest("ul").find("i").html(num);
+      $("#goods_detail_sticky_right span").html(`${num * 249}.00`);
+      $("#goods_detail_sticky_left aside h2 span").html(num);
       isYes = false;
     })
   }
@@ -135,7 +154,7 @@ define(["jquery" , "jquery-cookie"] , function(){
 
   //实现点击图标换图
   function goods_detail_image_switch(){
-    $("#goods_detail").on("click" , "#goods_detail_photoList div" , function(){
+    $(".goods_detail").on("click" , "#goods_detail_photoList div" , function(){
       $(this).addClass("active").siblings().removeClass("active");
       let index = $(this).index();
       $.ajax({
@@ -154,13 +173,30 @@ define(["jquery" , "jquery-cookie"] , function(){
     }).on("click" , "#goods_detail_info section ol li" , function(){
       $(this).addClass("active").siblings().removeClass("active");
       let index = $(this).index();
-      show_detail_info(index);
+      $(".goods_detail").attr("id" , index + 1);
+      $.ajax({
+        url : "../data/detail.json",
+        success : function(arr){
+          $("#goods_detail_photoMain img").attr("src" , arr[index].main_image[0]);
+          $("#goods_detail_sticky_left aside p").html(arr[index].color);
+          let newArr = arr[index].image_list;
+          for(let i = 0 ; i < newArr.length; i++){
+            $("#goods_detail_photoList div").eq(i).find("img").attr("src" , newArr[i]);
+          }
+          $("#goods_detail_sticky_left aside h2 span").html(1);
+          $("#goods_detail_sticky_right span").html("249.00");
+          $("#goods_detail_info div ul i").html(1)
+        },
+        error: function(error){
+          console.log(error);
+        }
+      })
     })
   }
 
   //放大镜效果
   function magnifying_image(){
-    $("#goods_detail").on("mouseenter" , "#goods_detail_photoMain" , function(ev){
+    $(".goods_detail").on("mouseenter" , "#goods_detail_photoMain" , function(ev){
       
       $(document).mousemove(function(ev){
         var e = ev || window.event;
@@ -187,7 +223,7 @@ define(["jquery" , "jquery-cookie"] , function(){
       success : function(arr){
         var newArr = arr[0].recommend;
         for(var i = 0; i < newArr.length ; i++){
-          str += ` <li>
+          str += ` <li id = "${i + 3}">
           <div class="goods_detail_recommend_img"><img src="${newArr[i].image}" alt=""></div>
           <h3>${newArr[i].title}</h3>
           <h5>${newArr[i].sub_title}</h5>
@@ -214,8 +250,142 @@ define(["jquery" , "jquery-cookie"] , function(){
     }).on("mouseleave" , "li" , function(){
       $(this).find("section").css("display" , "none");
       $(this).find("article").css("display" , "block");
+    }).on("click" , "section" , function(){               //点击添加购物车--设置cookie
+      let id = $(this).closest("li").attr("id");
+      shoppingcart_add_goods({id});
+      show_shoppingcart_content();
+      $("#add_shoppingCart_massage").animate({opacity : 1}, 500);
+      setTimeout(function(){
+        $("#add_shoppingCart_massage").animate({opacity : 0}, 500);
+      },1000);
     })
   }
+
+   //点击-添加购物车-设置cookie
+   function shoppingcart_add_goods({id,count}){
+    let firstTime = $.cookie("goods") == null ? true : false;
+    if(firstTime){
+      let arr = [];
+      if(count){
+        arr = [{id : id , num : count}];
+      }else{
+        arr = [{id : id , num : 1}];
+      }
+      $.cookie("goods" , JSON.stringify(arr) , {
+        expires : 7
+      });
+    }else{
+      let same = false;
+      let cookieArr = JSON.parse($.cookie("goods"));
+      for(let i = 0 ; i < cookieArr.length ; i++){
+        if(cookieArr[i].id == id){
+          if(count){
+            cookieArr[i].num =  Number(cookieArr[i].num) + parseInt(count);
+          }else{
+            cookieArr[i].num++;
+          }
+          same = true;
+          break;
+        }
+      }
+      if(!same){
+        if(count){
+          var obj= {id : id, num : count};
+          cookieArr.push(obj);
+        }else{
+          var obj= {id : id, num : 1};
+          cookieArr.push(obj);
+        }
+      }
+      $.cookie("goods" , JSON.stringify(cookieArr),{
+        expires:7
+      });
+    }
+    console.log($.cookie("goods"));
+  };
+
+  //购物车内容显示
+  function show_shoppingcart_content(){
+    let str = "";
+    if($.cookie("goods")){
+      $.ajax({
+        url : "../data/detail.json",
+        success : function(arr){
+          var newArr = [];
+          let cookieArr = JSON.parse($.cookie("goods"));
+          for(var i = 0; i < arr.length ; i++){
+            for(var j = 0 ; j < cookieArr.length ; j++){
+              if(cookieArr[j].id == arr[i].id){
+                arr[i].num = cookieArr[j].num;
+                arr[i].image = arr[i].main_image[0];
+                newArr.push(arr[i]);
+              }
+            }
+          };
+          for(var i = 0; i < arr[0].recommend.length ; i++){
+            for(var j = 0 ; j < cookieArr.length ; j++){
+              if(cookieArr[j].id == arr[0].recommend[i].id){
+                arr[0].recommend[i].num = cookieArr[j].num;
+                newArr.push(arr[0].recommend[i]);
+              }
+            }
+          };
+          var count = 0;
+          var totalPrice = 0;
+          str += `<div class="shoppingCart_content_item_box">`;
+          for(var i = 0 ; i < newArr.length; i++){
+            str += `<div class="shoppingCart_content_item" id="${newArr[i].id}">
+              <div class="item_img"><img src="${newArr[i].image}" alt=""></div>
+              <div class="item_info">
+                <h3>${newArr[i].title}</h3>
+                <h4>${newArr[i].sub_title}</h4>
+                <section>
+                  <i>¥${newArr[i].price}</i>×<span>${newArr[i].num}</span>
+                </section>
+              </div>
+              <div class = "item_info_delete">X</div>
+            </div>`;
+            count += Number(newArr[i].num);
+            totalPrice += newArr[i].price * newArr[i].num;
+          }
+          str += `</div>
+          <div class="shoppingCart_content_bottom">
+          <section>
+            <h5>共<span>${count}</span>件商品</h5>
+            <p>合计：<span>￥${totalPrice}</span></p>
+          </section>
+          <article>去购物车</article>
+        </div>`;
+          $("#shoppingCart_content").html(str);
+        },
+        error : function(error){
+          console.log(error);
+        }
+      })
+    }else{
+      str += `<div class = "shoppingCart_content_empty_box">
+      <h1 class="icon iconfont icon-che"></h1>
+      <h2>购物车为空</h2>
+      <span>你还没有选购任何商品，现在前往商城选购吧！</span>
+    </div>`;
+      $("#shoppingCart_content").html(str);
+    }
+  }
+  //点X 删除内容
+  $("#shoppingCart_content").on("click" , ".item_info_delete",function(){
+    var id = $(this).closest(".shoppingCart_content_item").remove().attr("id");
+    var cookieArr = JSON.parse($.cookie("goods"));
+    var index = cookieArr.findIndex(item => item.id == id);
+    cookieArr.splice(index,1);
+    if(cookieArr.length){
+      $.cookie("goods" , JSON.stringify(cookieArr) ,{
+        expires : 7
+      })
+    }else{
+      $.cookie("goods",null);
+    }
+    show_shoppingcart_content();
+  })
 
   function nav_Msg_module(node , turn){
     node.mouseenter(function(){
@@ -272,6 +442,7 @@ define(["jquery" , "jquery-cookie"] , function(){
     });
   }
 
+ 
 
   return {
     showShoppingCart_detail,
