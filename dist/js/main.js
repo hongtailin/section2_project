@@ -6,7 +6,8 @@ require.config({
     parabola : "parabola",
     index : "index",
     banner : "banner",
-    detail : "detail"
+    detail : "detail",
+    shoppingCart : "shoppingCart"
   },
   shim : {
     "jquery-cookie" : ["jquery"],
@@ -16,7 +17,7 @@ require.config({
   }
 })
 
-require(["index","banner" , "detail"] , function(index,banner , detail){
+require(["index","banner" , "detail", "shoppingCart"] , function(index,banner , detail,shoppingCart){
   index.showShoppingCart();
   index.switch_nav_Right();
   index.show_nav_Msg();
@@ -24,11 +25,11 @@ require(["index","banner" , "detail"] , function(index,banner , detail){
   index.show_products_hot();
   index.products_list();
 
-  detail.showShoppingCart_detail();
-  detail.show_nav_Msg_detail();
   detail.show_detail_info(0);
   detail.show_goods_detail_products_info();
   detail.show_goods_detail_recommend();
+
+  shoppingCart.main_shoppingCart();
 
   banner.bannerMain();
 })

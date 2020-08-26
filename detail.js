@@ -1,43 +1,10 @@
-define(["jquery" , "jquery-cookie"] , function(){
+define(["jquery" , "jquery-cookie"] , function($){
   show_shoppingcart_content();
-  function showShoppingCart_detail(){
-    var timer = null;
-    $("#shoppingCart_content,#header-right #shoppingCart_header a , #shoppingCart_nav a")
-    .mouseenter(function(){
-      clearTimeout(timer);
-      $("#shoppingCart_content").show();
-    });
-    $("#shoppingCart_content , #header-right #shoppingCart_header a , #shoppingCart_nav a ").mouseleave(function(){
-      timer = setTimeout(() => {
-        $("#shoppingCart_content").hide();
-      }, 300);
-    });
-    $(document).scroll(function(){
-      $("#shoppingCart_content").hide();
-    })
-  }
-
+  require(["index"] , function(index){
+    index.showShoppingCart();
+    index.show_nav_Msg();
+  })
   
-  function show_nav_Msg_detail(){
-    $("#nav-msg-box").mouseenter(function(){
-      var top = $("#navbox").offset().top;
-      $("#nav-msg-box").css("top", top+75);
-      $("#nav-msg-box").show();
-    })
-    //导航选项卡
-    for(var i = 0 ; i < 10 ; i++){
-      var node = $("#navbox nav ul li").eq(i).find("a");
-      nav_Msg_module(node , i);
-    }
-    
-    $("#nav-msg , #navbox").mouseleave(function(){
-      $("#nav-msg-box").hide();
-    })
-
-    $(window).scroll(function(){
-      $("#nav-msg-box").hide();
-    })
-  }
 
   //详情页
   function show_detail_info(num){
@@ -272,7 +239,8 @@ define(["jquery" , "jquery-cookie"] , function(){
         arr = [{id : id , num : 1}];
       }
       $.cookie("goods" , JSON.stringify(arr) , {
-        expires : 7
+        expires : 7,
+        path:"/"
       });
     }else{
       let same = false;
@@ -298,7 +266,8 @@ define(["jquery" , "jquery-cookie"] , function(){
         }
       }
       $.cookie("goods" , JSON.stringify(cookieArr),{
-        expires:7
+        expires:7,
+        path: "/"
       });
     }
     console.log($.cookie("goods"));
@@ -379,10 +348,13 @@ define(["jquery" , "jquery-cookie"] , function(){
     cookieArr.splice(index,1);
     if(cookieArr.length){
       $.cookie("goods" , JSON.stringify(cookieArr) ,{
-        expires : 7
+        expires : 7,
+        path: "/"
       })
     }else{
-      $.cookie("goods",null);
+      $.cookie("goods",null,{
+        path: "/"
+      });
     }
     show_shoppingcart_content();
   })
@@ -445,10 +417,9 @@ define(["jquery" , "jquery-cookie"] , function(){
  
 
   return {
-    showShoppingCart_detail,
-    show_nav_Msg_detail,
     show_detail_info,
     show_goods_detail_products_info,
-    show_goods_detail_recommend
+    show_goods_detail_recommend,
+    show_shoppingcart_content
   }
 })

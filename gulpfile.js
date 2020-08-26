@@ -68,6 +68,16 @@ gulp.task("index-scss_detail",function(){
   .pipe(connect.reload());
 })
 
+gulp.task("index-scss_shoppingCart",function(){
+  return gulp.src("stylesheet/shoppingCart.scss")
+  .pipe(scss())
+  .pipe(gulp.dest("dist/css"))
+  .pipe(minify())
+  .pipe(rename("shoppingCart.min.css"))
+  .pipe(gulp.dest("dist/css"))
+  .pipe(connect.reload());
+})
+
 //监听
 gulp.task("watch" , function(){
   gulp.watch(["*.html" , "!index.html"], ["copy-html"]);
@@ -76,6 +86,7 @@ gulp.task("watch" , function(){
   gulp.watch(["*.js" , "!gulpfile.js"] , ["script"]);
   gulp.watch("stylesheet/index.scss" , ["index-scss"]);
   gulp.watch("stylesheet/detail.scss" , ["index-scss_detail"]);
+  gulp.watch("stylesheet/shoppingCart.scss" , ["index-scss_shoppingCart"]);
 })
 
 //服务器

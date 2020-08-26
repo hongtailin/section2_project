@@ -1,5 +1,13 @@
 //console.log("11");
-define(["jquery" , "jquery-cookie"] , function(){
+define(["jquery" , "jquery-cookie"] , function($){
+  
+  require(["detail"], function(det){
+    //刷新cookie
+    $("#header-right #shoppingCart_header a , #shoppingCart_nav a").mouseenter(function(){
+      det.show_shoppingcart_content();
+    })
+  })
+  
   function showShoppingCart(){
     var timer = null;
     $("#shoppingCart_content,#header-right #shoppingCart_header a , #shoppingCart_nav a")
@@ -11,11 +19,11 @@ define(["jquery" , "jquery-cookie"] , function(){
       timer = setTimeout(() => {
         $("#shoppingCart_content").hide();
       }, 300);
-    })
+    });
   }
 
   function switch_nav_Right(){
-    $(window).scroll(function(){
+    $(document).scroll(function(){
       var top = $("#navbox").offset().top;
       if(top > 45.1){
         $("#nav-right-hide").show();
@@ -50,6 +58,8 @@ define(["jquery" , "jquery-cookie"] , function(){
       $("#nav-msg-box").hide();
     })
   }
+
+
 
   //活动页面
   function show_activities(){

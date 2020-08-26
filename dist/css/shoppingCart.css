@@ -1,0 +1,282 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+a {
+  text-decoration: none; }
+
+body {
+  background: #999; }
+
+* {
+  box-sizing: border-box; }
+
+header {
+  background-color: olive;
+  position: relative; }
+  header #logo {
+    float: left; }
+  header #header-right {
+    float: right; }
+    header #header-right div {
+      float: left; }
+  header ul {
+    width: 1200px;
+    height: 45px;
+    margin: 0 auto; }
+    header ul li {
+      float: left; }
+      header ul li a {
+        line-height: 45px;
+        font-size: 12px;
+        padding: 0 20px;
+        color: white; }
+      header ul li .active {
+        font-weight: 900; }
+  header .iconfont {
+    font-size: 20px;
+    line-height: 45px;
+    margin: 0 20px;
+    color: ivory; }
+
+#shoppingCart_main {
+  width: 1220px;
+  background: white;
+  margin: 25px auto;
+  border: 1px solid gray;
+  border-radius: 10px;
+  overflow: hidden; }
+  #shoppingCart_main #shoppingCart_main_title {
+    height: 60px;
+    background: lightgray;
+    font-size: 24px;
+    line-height: 60px;
+    padding-left: 30px;
+    border-bottom: 1px solid gray; }
+  #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_empty {
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; }
+    #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_empty .iconfont {
+      font-size: 300px;
+      margin-top: 70px; }
+    #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_empty p {
+      font-size: 14px;
+      color: #999; }
+    #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_empty section {
+      margin-top: 20px;
+      display: flex; }
+      #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_empty section div {
+        width: 140px;
+        height: 50px;
+        border: 1px solid gray;
+        border-radius: 10px;
+        overflow: hidden;
+        text-align: center;
+        line-height: 50px;
+        margin: 0 10px;
+        cursor: pointer;
+        background: lightgray; }
+        #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_empty section div:nth-of-type(1) {
+          color: white;
+          background: #5f5ff5; }
+          #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_empty section div:nth-of-type(1):hover {
+            background: slateblue; }
+        #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_empty section div:hover {
+          background: #999; }
+  #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_item {
+    position: relative; }
+    #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_item h2 {
+      height: 40px;
+      background: #b3b0b0;
+      display: flex;
+      align-items: center;
+      padding: 0 30px;
+      font-size: 12px; }
+      #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_item h2 p {
+        flex: 1; }
+      #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_item h2 span {
+        margin-left: 100px; }
+    #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_item .shoppingCart_main_content_item_list {
+      display: flex;
+      align-items: center;
+      height: 110px; }
+      #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_item .shoppingCart_main_content_item_list .checkbox_box {
+        width: 74px;
+        display: flex;
+        justify-content: center; }
+      #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_item .shoppingCart_main_content_item_list .shoppingCart_main_content_item_info {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 110px;
+        border-bottom: 1px solid gray; }
+        #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_item .shoppingCart_main_content_item_list .shoppingCart_main_content_item_info .shoppingCart_main_content_item_img {
+          width: 80px;
+          height: 80px;
+          border: 1px solid gray;
+          border-radius: 10px;
+          overflow: hidden; }
+          #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_item .shoppingCart_main_content_item_list .shoppingCart_main_content_item_info .shoppingCart_main_content_item_img img {
+            width: 100%;
+            height: 100%; }
+        #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_item .shoppingCart_main_content_item_list .shoppingCart_main_content_item_info .shoppingCart_main_content_item_title {
+          margin-left: 20px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          width: 566px; }
+          #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_item .shoppingCart_main_content_item_list .shoppingCart_main_content_item_info .shoppingCart_main_content_item_title h3 {
+            font-weight: 900;
+            margin: 10px 0; }
+          #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_item .shoppingCart_main_content_item_list .shoppingCart_main_content_item_info .shoppingCart_main_content_item_title h4 {
+            margin: 10px 0;
+            font-size: 12px;
+            color: #999; }
+        #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_item .shoppingCart_main_content_item_list .shoppingCart_main_content_item_info .shoppingCart_main_content_item_price {
+          width: 140px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #999;
+          font-size: 14px; }
+        #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_item .shoppingCart_main_content_item_list .shoppingCart_main_content_item_info ul {
+          width: 112px;
+          display: flex;
+          align-items: center;
+          justify-content: center; }
+          #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_item .shoppingCart_main_content_item_list .shoppingCart_main_content_item_info ul li {
+            width: 20px;
+            height: 20px;
+            background: lightgray;
+            border-radius: 50%;
+            line-height: 20px;
+            text-align: center;
+            font-weight: 900;
+            box-shadow: 0px 0px 5px 2px #999;
+            cursor: pointer;
+            margin: 0 10px; }
+        #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_item .shoppingCart_main_content_item_list .shoppingCart_main_content_item_info .shoppingCart_main_content_item_total {
+          margin-left: 45px;
+          color: #999;
+          width: 44px; }
+        #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_item .shoppingCart_main_content_item_list .shoppingCart_main_content_item_info .shoppingCart_main_content_item_operation {
+          width: 24px;
+          height: 24px;
+          background: lightgray;
+          border: 1px solid #999;
+          border-radius: 50%;
+          overflow: hidden;
+          text-align: center;
+          line-height: 24px;
+          font-weight: 900;
+          margin-left: 90px;
+          cursor: pointer; }
+          #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_item .shoppingCart_main_content_item_list .shoppingCart_main_content_item_info .shoppingCart_main_content_item_operation:hover {
+            background: darkcyan; }
+    #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_item .shoppingCart_main_content_item_bottom {
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      bottom: 0;
+      border-top: 1px solid #999;
+      box-shadow: 0px -2px 5px 2px lightgray; }
+      #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_item .shoppingCart_main_content_item_bottom .shoppingCart_main_content_item_bottom_left {
+        display: flex;
+        align-items: center;
+        padding: 0 24px;
+        font-size: 14px; }
+        #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_item .shoppingCart_main_content_item_bottom .shoppingCart_main_content_item_bottom_left span {
+          margin: 0 10px;
+          font-weight: 900; }
+        #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_item .shoppingCart_main_content_item_bottom .shoppingCart_main_content_item_bottom_left aside {
+          border-left: 1px solid #999;
+          padding-left: 10px;
+          cursor: pointer;
+          color: #999; }
+    #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_item .shoppingCart_main_content_item_bottom_right {
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_item .shoppingCart_main_content_item_bottom_right .shoppingCart_main_content_item_bottom_right_count {
+        border-right: 1px solid #999;
+        padding-right: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        font-weight: 900;
+        font-size: 14px; }
+        #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_item .shoppingCart_main_content_item_bottom_right .shoppingCart_main_content_item_bottom_right_count span {
+          margin: 0 10px;
+          font-size: 20px;
+          color: red; }
+        #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_item .shoppingCart_main_content_item_bottom_right .shoppingCart_main_content_item_bottom_right_count h5 {
+          color: #999; }
+          #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_item .shoppingCart_main_content_item_bottom_right .shoppingCart_main_content_item_bottom_right_count h5 span {
+            color: #999; }
+      #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_item .shoppingCart_main_content_item_bottom_right .shoppingCart_main_content_item_bottom_right_price {
+        font-size: 14px;
+        font-weight: 900;
+        margin-left: 20px; }
+        #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_item .shoppingCart_main_content_item_bottom_right .shoppingCart_main_content_item_bottom_right_price span {
+          color: red;
+          font-size: 20px; }
+      #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_item .shoppingCart_main_content_item_bottom_right .shoppingCart_main_content_item_bottom_right_calculate {
+        width: 130px;
+        height: 50px;
+        background: slateblue;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-weight: 900;
+        margin: 0 30px;
+        cursor: pointer; }
