@@ -7,7 +7,9 @@ require.config({
     index : "index",
     banner : "banner",
     detail : "detail",
-    shoppingCart : "shoppingCart"
+    shoppingCart : "shoppingCart",
+    login : "login",
+    register : "register"
   },
   shim : {
     "jquery-cookie" : ["jquery"],
@@ -17,7 +19,7 @@ require.config({
   }
 })
 
-require(["index","banner" , "detail", "shoppingCart"] , function(index,banner , detail,shoppingCart){
+require(["index","banner" , "detail", "shoppingCart","login","register"] , function(index,banner , detail,shoppingCart,login,register){
   index.showShoppingCart();
   index.switch_nav_Right();
   index.show_nav_Msg();
@@ -30,6 +32,10 @@ require(["index","banner" , "detail", "shoppingCart"] , function(index,banner , 
   detail.show_goods_detail_recommend();
 
   shoppingCart.main_shoppingCart();
+
+  login.login_func();
+
+  register.register();
 
   banner.bannerMain();
 })
