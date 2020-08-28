@@ -91,8 +91,8 @@ define(["jquery" , "jquery-cookie"],function($){
       <i class="icon iconfont icon-gouwudai"></i>
       <p>您的购物袋还没有商品</p>
       <section>
-        <div>登录</div>
-        <div>现在选购</div>
+        <div><a href="login.html">登录</a></div>
+        <div><a href="detail.html">现在选购</a></div>
       </section>
     </div>`;
       $("#shoppingCart_main_content").html(str);

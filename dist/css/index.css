@@ -308,7 +308,8 @@ header {
         width: 140px;
         overflow: hidden;
         white-space: nowrap;
-        text-overflow: ellipsis; }
+        text-overflow: ellipsis;
+        text-align: center; }
       #nav-msg-box #nav-msg .nav-msg-container2 img {
         height: 126px;
         width: 126px; }

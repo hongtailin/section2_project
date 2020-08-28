@@ -26,9 +26,9 @@
   mysql_set_charset("utf8");
   mysql_select_db("section2");
 
-  $str = md5(md5(md5($password)."qingdao")."qianfeng");
+  $str = md5(md5(md5($password).'qianfeng').'qingdao');
 
-  $sql = "SELECT * FROM users WHERE username ='{$username}' AND password='{$str}' ";
+  $sql = "SELECT * FROM project WHERE username ='{$username}' AND password='{$str}' ";
 
   $res = mysql_query($sql);
 

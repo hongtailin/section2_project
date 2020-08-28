@@ -102,7 +102,7 @@ gulp.task("index-scss_register",function(){
 gulp.task("watch" , function(){
   gulp.watch(["*.html" , "!index.html"], ["copy-html"]);
   gulp.watch("index.html" , ["copy-index"]);
-  gulp.watch(["*.json" , "!package.json"] , ["data"]);
+  gulp.watch(["*.{json,php}" , "!package.json"] , ["data"]);
   gulp.watch(["*.js" , "!gulpfile.js"] , ["script"]);
   gulp.watch("stylesheet/index.scss" , ["index-scss"]);
   gulp.watch("stylesheet/detail.scss" , ["index-scss_detail"]);

@@ -46,7 +46,8 @@ table {
   border-spacing: 0; }
 
 a {
-  text-decoration: none; }
+  text-decoration: none;
+  color: black; }
 
 body {
   background: #999; }
@@ -127,6 +128,8 @@ header {
           background: #5f5ff5; }
           #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_empty section div:nth-of-type(1):hover {
             background: slateblue; }
+          #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_empty section div:nth-of-type(1) a {
+            color: white; }
         #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_empty section div:hover {
           background: #999; }
   #shoppingCart_main #shoppingCart_main_content #shoppingCart_main_content_item {

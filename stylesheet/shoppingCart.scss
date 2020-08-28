@@ -3,6 +3,7 @@
 
 a{
   text-decoration : none;
+  color:black;
 }
 body{
   background:#999;
@@ -98,6 +99,9 @@ header{
             background:rgb(95, 95, 245);
             &:hover{
               background:slateblue;
+            }
+            a{
+              color:white;
             }
           }
           
